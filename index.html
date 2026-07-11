@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<!--
+  ============================================================================
+  HOMEPAGE  (front-page.php / home.php in the eventual WordPress theme)
+  ----------------------------------------------------------------------------
+  Static, front-end-only mock-up. Dynamic WooCommerce injection points are
+  flagged inline with "WOOCOMMERCE INJECTION POINT" comments.
+  ============================================================================
+-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aranya — handwoven luxury sarees. Heirloom textiles, made as if you were meant to keep them for a lifetime." />
+  <title>Aranya — Handwoven Luxury Sarees</title>
+
+  <!-- Remove the no-js class as early as possible for progressive enhancement. -->
+  <script>document.documentElement.classList.remove("no-js");</script>
+
+  <!-- Fonts: elegant serif (headings) + clean sans (body). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets (order matters: tokens → layout → components → pages). -->
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/pages.css" />
+</head>
+
+<body>
+  <!-- ======================================================================
+       SITE HEADER  →  header.php
+       ====================================================================== -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <!-- Mobile toggle (hidden on desktop) -->
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- Primary navigation → wp_nav_menu( 'primary' ) -->
+      <nav class="site-nav" id="primary-nav" aria-label="Primary">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="shop.html">Collection</a></li>
+          <li><a class="site-nav__link" href="index.html#craft">Craft</a></li>
+          <li><a class="site-nav__link" href="index.html#story">Our Story</a></li>
+          <li><a class="site-nav__link" href="index.html#journal">Journal</a></li>
+        </ul>
+      </nav>
+
+      <!-- Brand wordmark → the_custom_logo() -->
+      <a class="site-brand" href="index.html">
+        Aranya
+        <span>Handwoven Heirlooms</span>
+      </a>
+
+      <!-- Utility actions → account + mini-cart fragment -->
+      <div class="site-header__actions">
+        <a class="site-header__action site-header__action--account" href="#">Account</a>
+        <a class="site-header__action" href="#">Bag&nbsp;(<span class="cart-count">0</span>)</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ====================================================================
+         HERO — full-height media background + tagline
+         THEME INJECTION: swap <video>/poster for a customizer field.
+         ==================================================================== -->
+    <section class="hero">
+      <div class="hero__media">
+        <!--
+          A looping muted video is ideal here. It falls back to the poster
+          SVG if the browser can't play it (or no source is provided yet).
+        -->
+        <video autoplay muted loop playsinline poster="assets/img/hero.svg">
+          <!-- <source src="assets/video/hero.mp4" type="video/mp4" /> -->
+        </video>
+      </div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="hero__content">
+          <p class="overline hero__overline">The Winter Weaves &mdash; 2026</p>
+          <h1 class="hero__title">Woven for the ones who notice</h1>
+          <p class="hero__lead">
+            Heirloom sarees, made slowly on the handloom. Rare silks, natural
+            dyes, and a restraint you can feel in the drape.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="shop.html">Explore the collection</a>
+            <a class="btn btn--ghost" href="#craft">The craft</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__scroll-cue" aria-hidden="true">
+        <span>Scroll</span>
+        <span class="line"></span>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         INTRO / BRAND STATEMENT — parallax fade target after the hero
+         ==================================================================== -->
+    <section class="section intro">
+      <div class="container">
+        <p class="overline" data-reveal>Aranya — meaning "of the forest"</p>
+        <p class="intro__statement" data-reveal>
+          A saree is not bought. It is <em>chosen</em>, kept, and passed on.
+        </p>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         FEATURED COLLECTION — 4 cards, staggered reveal on scroll
+         WOOCOMMERCE: this loop maps to a [products] shortcode / WP_Query of
+         featured products. Each <li.product-card> → content-product.php.
+         ==================================================================== -->
+    <section class="section bg-ivory-deep" id="featured">
+      <div class="container">
+        <div class="section-header section-header--center">
+          <p class="overline" data-reveal>Newly on the loom</p>
+          <h2 class="section-header__title" data-reveal>The Featured Weaves</h2>
+          <hr class="rule-gold" data-reveal />
+        </div>
+
+        <!-- ul.products in WooCommerce -->
+        <ul class="products-grid products-grid--featured">
+          <!-- PRODUCT CARD (repeatable) -->
+          <li class="product-card" data-reveal data-reveal-group="featured">
+            <div class="product-card__media">
+              <span class="product-card__badge">New</span>
+              <!-- WOOCOMMERCE INJECTION POINT — thumbnail + permalink -->
+              <a href="product.html" aria-label="View Rani Kanjivaram">
+                <img class="product-card__image" src="assets/img/saree-1.svg" alt="Rani — deep maroon Kanjivaram silk saree with gold zari border" loading="lazy" />
+              </a>
+              <div class="product-card__actions">
+                <!-- WOOCOMMERCE INJECTION POINT — loop add-to-cart button -->
+                <button class="btn btn--primary btn--block" data-add-to-cart data-product-name="Rani Kanjivaram">Add to bag</button>
+              </div>
+            </div>
+            <div class="product-card__body">
+              <span class="product-card__meta">Kanjivaram Silk</span>
+              <!-- WOOCOMMERCE INJECTION POINT — product title -->
+              <h3 class="product-card__title"><a href="product.html">Rani</a></h3>
+              <!-- WOOCOMMERCE INJECTION POINT — price -->
+              <p class="product-card__price">&#8377;&nbsp;48,000</p>
+            </div>
+          </li>
+
+          <li class="product-card" data-reveal data-reveal-group="featured">
+            <div class="product-card__media">
+              <a href="product.html" aria-label="View Champa Banarasi">
+                <img class="product-card__image" src="assets/img/saree-2.svg" alt="Champa — ivory Banarasi silk saree with soft gold motifs" loading="lazy" />
+              </a>
+              <div class="product-card__actions">
+                <button class="btn btn--primary btn--block" data-add-to-cart data-product-name="Champa Banarasi">Add to bag</button>
+              </div>
+            </div>
+            <div class="product-card__body">
+              <span class="product-card__meta">Banarasi Silk</span>
+              <h3 class="product-card__title"><a href="product.html">Champa</a></h3>
+              <p class="product-card__price">&#8377;&nbsp;52,500</p>
+            </div>
+          </li>
+
+          <li class="product-card" data-reveal data-reveal-group="featured">
+            <div class="product-card__media">
+              <a href="product.html" aria-label="View Vana Kanjivaram">
+                <img class="product-card__image" src="assets/img/saree-4.svg" alt="Vana — emerald green silk saree with gold zari" loading="lazy" />
+              </a>
+              <div class="product-card__actions">
+                <button class="btn btn--primary btn--block" data-add-to-cart data-product-name="Vana Silk">Add to bag</button>
+              </div>
+            </div>
+            <div class="product-card__body">
+              <span class="product-card__meta">Mysore Silk</span>
+              <h3 class="product-card__title"><a href="product.html">Vana</a></h3>
+              <p class="product-card__price">&#8377;&nbsp;39,000</p>
+            </div>
+          </li>
+
+          <li class="product-card" data-reveal data-reveal-group="featured">
+            <div class="product-card__media">
+              <span class="product-card__badge">Limited</span>
+              <a href="product.html" aria-label="View Neel Chanderi">
+                <img class="product-card__image" src="assets/img/saree-5.svg" alt="Neel — indigo Chanderi saree with silver detailing" loading="lazy" />
+              </a>
+              <div class="product-card__actions">
+                <button class="btn btn--primary btn--block" data-add-to-cart data-product-name="Neel Chanderi">Add to bag</button>
+              </div>
+            </div>
+            <div class="product-card__body">
+              <span class="product-card__meta">Chanderi</span>
+              <h3 class="product-card__title"><a href="product.html">Neel</a></h3>
+              <p class="product-card__price">&#8377;&nbsp;28,500</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="text-center" style="margin-top: var(--space-lg);">
+          <a class="link-underline" href="shop.html" data-reveal>View the full collection</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         CRAFTSMANSHIP — pinned scroll storytelling
+         The .story__pin is pinned while the panels cross-fade (see main.js).
+         ==================================================================== -->
+    <section class="story" id="craft">
+      <div class="container">
+        <div class="story__pin">
+          <!-- Left: sticky heading + progress markers -->
+          <div class="story__aside">
+            <p class="overline story__eyebrow">The making</p>
+            <h2 class="story__heading">Four hands, four months, one saree</h2>
+            <p class="text-muted">
+              Every Aranya weave passes through a small circle of artisans.
+              Nothing is rushed; the loom keeps its own time.
+            </p>
+            <div class="story__progress" aria-hidden="true">
+              <span class="is-active"></span><span></span><span></span>
+            </div>
+          </div>
+
+          <!-- Right: cross-fading panels -->
+          <div class="story__panels">
+            <article class="story-panel">
+              <span class="story-panel__index">01</span>
+              <h3 class="story-panel__title">The yarn is dyed by hand</h3>
+              <p class="story-panel__text">
+                Mulberry silk is steeped in small batches of natural dye —
+                madder root for maroon, marigold for gold. No two lots are
+                identical, and that is the point.
+              </p>
+            </article>
+            <article class="story-panel">
+              <span class="story-panel__index">02</span>
+              <h3 class="story-panel__title">The zari is real</h3>
+              <p class="story-panel__text">
+                Fine threads of silver are gilded and wound by hand before a
+                single row is woven. You can feel the weight of it in the pallu.
+              </p>
+            </article>
+            <article class="story-panel">
+              <span class="story-panel__index">03</span>
+              <h3 class="story-panel__title">The loom does the rest — slowly</h3>
+              <p class="story-panel__text">
+                A master weaver sets perhaps two inches a day. Four months
+                later, a saree leaves the loom that will outlast its maker.
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         EDITORIAL SPLIT BANNER — image + brand story
+         ==================================================================== -->
+    <section class="editorial" id="story">
+      <div class="editorial__media">
+        <img src="assets/img/editorial-1.svg" alt="Detail of a handwoven maroon and gold saree pallu" loading="lazy" />
+      </div>
+      <div class="editorial__body">
+        <p class="overline" data-reveal>Our story</p>
+        <h2 data-reveal>Begun in a weaving town you have never heard of</h2>
+        <p data-reveal>
+          Aranya works with fewer than forty looms across three villages. We
+          buy no more than they can make well, and we sign every saree with the
+          name of the hands that wove it.
+        </p>
+        <a class="link-underline" href="#" data-reveal>Read the full story</a>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         JOURNAL TEASER + NEWSLETTER
+         ==================================================================== -->
+    <section class="section text-center invite" id="journal">
+      <div class="container">
+        <p class="overline" data-reveal>Stay close to the loom</p>
+        <h2 class="section-header__title" data-reveal>Letters from Aranya</h2>
+        <p class="text-muted" data-reveal style="margin-inline:auto;">
+          New weaves, quiet drops, and the occasional note on caring for silk.
+        </p>
+        <!-- Front-end only; wire to Mailchimp/WP form later. -->
+        <form class="invite__form" data-reveal onsubmit="return false;">
+          <label class="visually-hidden" for="email">Email address</label>
+          <input class="invite__input" id="email" type="email" placeholder="Your email address" required />
+          <button class="btn btn--primary" type="submit">Subscribe</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================================================================
+       SITE FOOTER  →  footer.php
+       ====================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__top">
+        <div class="site-footer__brand-col">
+          <p class="site-footer__brand">Aranya</p>
+          <p class="site-footer__tagline">
+            Handwoven luxury sarees. Made slowly, meant to be kept.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col__heading">Shop</h4>
+          <ul class="footer-col__list">
+            <li><a href="shop.html">All sarees</a></li>
+            <li><a href="shop.html">Silk</a></li>
+            <li><a href="shop.html">Handloom cotton</a></li>
+            <li><a href="shop.html">Bridal</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col__heading">The house</h4>
+          <ul class="footer-col__list">
+            <li><a href="#story">Our story</a></li>
+            <li><a href="#craft">Craftsmanship</a></li>
+            <li><a href="#journal">Journal</a></li>
+            <li><a href="#">Stockists</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col__heading">Care</h4>
+          <ul class="footer-col__list">
+            <li><a href="#">Shipping &amp; returns</a></li>
+            <li><a href="#">Saree care</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <span>&copy; 2026 Aranya Weaves</span>
+        <span>Handwoven in India</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- "Added to bag" toast (front-end placeholder for WooCommerce AJAX). -->
+  <div class="toast" role="status" aria-live="polite">
+    <span class="dot" aria-hidden="true"></span>
+    <span class="toast__message"></span>
+  </div>
+
+  <!-- ======================================================================
+       SCRIPTS — GSAP + ScrollTrigger via CDN, then site JS
+       ====================================================================== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
