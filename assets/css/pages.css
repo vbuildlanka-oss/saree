@@ -36,6 +36,15 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* A slow, barely-there zoom keeps the hero feeling alive without any
+     motion that competes with the content. Auto-disabled under
+     prefers-reduced-motion (see base.css). */
+  transform-origin: center;
+  animation: hero-ambient 24s var(--ease-luxe) infinite alternate;
+}
+@keyframes hero-ambient {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
 }
 
 /* Dark wash for text legibility over imagery. */
@@ -49,6 +58,24 @@
 
 .hero__content {
   max-width: 760px;
+}
+
+/* Hero copy eases up once, on load — a single calm first impression rather
+   than a scroll-driven effect. */
+.hero__overline,
+.hero__title,
+.hero__lead,
+.hero__actions {
+  opacity: 0;
+  animation: hero-rise 1.1s var(--ease-luxe) forwards;
+}
+.hero__overline { animation-delay: 0.15s; }
+.hero__title    { animation-delay: 0.30s; }
+.hero__lead     { animation-delay: 0.45s; }
+.hero__actions  { animation-delay: 0.60s; }
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: none; }
 }
 
 .hero__overline {
@@ -118,8 +145,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   Craftsmanship — pinned scroll storytelling
-   The .story-track is pinned by ScrollTrigger while .story-panel items cross-fade.
+   Craftsmanship — quiet, static two-column storytelling (no pinning)
    -------------------------------------------------------------------------- */
 .story {
   position: relative;
@@ -127,18 +153,20 @@
   color: var(--color-ivory);
 }
 
-.story__pin {
-  min-height: 100vh;
+/* Two-column layout. On desktop the intro rests softly (sticky) while the
+   three craft steps read down beside it — no pinning, no scroll-jacking. */
+.story__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: center;
   gap: var(--space-xl);
-  padding-block: var(--space-xl);
+  align-items: start;
+  padding-block: var(--space-2xl);
 }
 
-/* Left column — sticky heading & progress. */
+/* Left column — the heading gently follows as you read the steps. */
 .story__aside {
-  position: relative;
+  position: sticky;
+  top: calc(var(--header-height) + var(--space-lg));
 }
 .story__eyebrow { color: var(--color-gold-soft); margin-bottom: var(--space-sm); }
 .story__heading {
@@ -146,37 +174,25 @@
   color: var(--color-ivory);
   margin-bottom: var(--space-md);
 }
-.story__progress {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: var(--space-lg);
-}
-.story__progress span {
-  width: 34px;
-  height: 2px;
-  background-color: rgba(247, 243, 236, 0.25);
-  transition: background-color var(--dur-fast) var(--ease-luxe);
-}
-.story__progress span.is-active { background-color: var(--color-gold); }
 
-/* Right column — stacked cross-fading panels. */
+/* Right column — the three craft steps, read top to bottom, separated by
+   fine hairlines. */
 .story__panels {
-  position: relative;
-  min-height: 60vh;
-}
-.story-panel {
-  position: absolute;
-  inset: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: var(--space-md);
-  opacity: 0;
 }
-.story-panel:first-child { opacity: 1; }
+.story-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding-block: var(--space-lg);
+  border-bottom: 1px solid rgba(247, 243, 236, 0.1);
+}
+.story-panel:first-child { padding-top: 0; }
+.story-panel:last-child { border-bottom: 0; padding-bottom: 0; }
 .story-panel__index {
   font-family: var(--font-serif);
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: var(--color-gold);
   line-height: 1;
 }
@@ -464,7 +480,8 @@
    ========================================================================== */
 @media (max-width: 1024px) {
   .product-layout { grid-template-columns: 1fr; gap: var(--space-lg); }
-  .story__pin { grid-template-columns: 1fr; gap: var(--space-lg); min-height: auto; }
+  .story__inner { grid-template-columns: 1fr; gap: var(--space-lg); }
+  .story__aside { position: static; }
   .editorial { grid-template-columns: 1fr; }
   .editorial__media { min-height: 60vh; }
 }

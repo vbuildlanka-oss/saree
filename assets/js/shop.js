@@ -38,8 +38,6 @@
       if (show) visible += 1;
     });
     updateCount(visible);
-    // Positions changed — let ScrollTrigger recompute.
-    if (window.ScrollTrigger) window.ScrollTrigger.refresh();
   }
 
   filterButtons.forEach((btn) => {
@@ -67,7 +65,6 @@
         );
     }
     sorted.forEach((card) => grid.appendChild(card));
-    if (window.ScrollTrigger) window.ScrollTrigger.refresh();
   }
 
   if (orderSelect) {

@@ -91,12 +91,12 @@
         <!--
           PRODUCT GRID → ul.products
           Each <li.product-card> = one WooCommerce loop item (content-product.php).
-          Cards are split into two reveal groups (one per row) so each row
-          staggers in as it enters the viewport via ScrollTrigger.
+          Cards ease in with a single, gentle CSS load-in (see components.css) —
+          no scroll-triggered motion.
         -->
         <ul class="products-grid products-grid--shop">
           <!-- Row 1 -->
-          <li class="product-card" data-category="silk" data-reveal data-reveal-group="shop-1">
+          <li class="product-card" data-category="silk">
             <div class="product-card__media">
               <span class="product-card__badge">New</span>
               <a href="product.html" aria-label="View Rani"><img class="product-card__image" src="assets/img/saree-1.svg" alt="Rani — deep maroon Kanjivaram silk saree" loading="lazy" /></a>
@@ -109,7 +109,7 @@
             </div>
           </li>
 
-          <li class="product-card" data-category="silk" data-reveal data-reveal-group="shop-1">
+          <li class="product-card" data-category="silk">
             <div class="product-card__media">
               <a href="product.html" aria-label="View Champa"><img class="product-card__image" src="assets/img/saree-2.svg" alt="Champa — ivory Banarasi silk saree" loading="lazy" /></a>
               <div class="product-card__actions"><button class="btn btn--primary btn--block" data-add-to-cart data-product-name="Champa">Add to bag</button></div>
@@ -121,7 +121,7 @@
             </div>
           </li>
 
-          <li class="product-card" data-category="cotton" data-reveal data-reveal-group="shop-1">
+          <li class="product-card" data-category="cotton">
             <div class="product-card__media">
               <a href="product.html" aria-label="View Raat"><img class="product-card__image" src="assets/img/saree-3.svg" alt="Raat — charcoal handloom saree with silver border" loading="lazy" /></a>
               <div class="product-card__actions"><button class="btn btn--primary btn--block" data-add-to-cart data-product-name="Raat">Add to bag</button></div>
@@ -133,7 +133,7 @@
             </div>
           </li>
 
-          <li class="product-card" data-category="silk bridal" data-reveal data-reveal-group="shop-1">
+          <li class="product-card" data-category="silk bridal">
             <div class="product-card__media">
               <span class="product-card__badge">Bridal</span>
               <a href="product.html" aria-label="View Vana"><img class="product-card__image" src="assets/img/saree-4.svg" alt="Vana — emerald green silk saree" loading="lazy" /></a>
@@ -146,7 +146,7 @@
             </div>
           </li>
 
-          <li class="product-card" data-category="cotton" data-reveal data-reveal-group="shop-1">
+          <li class="product-card" data-category="cotton">
             <div class="product-card__media">
               <span class="product-card__badge">Limited</span>
               <a href="product.html" aria-label="View Neel"><img class="product-card__image" src="assets/img/saree-5.svg" alt="Neel — indigo Chanderi saree" loading="lazy" /></a>
@@ -159,7 +159,7 @@
             </div>
           </li>
 
-          <li class="product-card" data-category="cotton" data-reveal data-reveal-group="shop-1">
+          <li class="product-card" data-category="cotton">
             <div class="product-card__media">
               <a href="product.html" aria-label="View Gulaab"><img class="product-card__image" src="assets/img/saree-6.svg" alt="Gulaab — dusty rose linen saree" loading="lazy" /></a>
               <div class="product-card__actions"><button class="btn btn--primary btn--block" data-add-to-cart data-product-name="Gulaab">Add to bag</button></div>
@@ -172,7 +172,7 @@
           </li>
 
           <!-- Row 2 -->
-          <li class="product-card" data-category="cotton" data-reveal data-reveal-group="shop-2">
+          <li class="product-card" data-category="cotton">
             <div class="product-card__media">
               <a href="product.html" aria-label="View Haldi"><img class="product-card__image" src="assets/img/saree-7.svg" alt="Haldi — ochre mustard handloom saree" loading="lazy" /></a>
               <div class="product-card__actions"><button class="btn btn--primary btn--block" data-add-to-cart data-product-name="Haldi">Add to bag</button></div>
@@ -184,7 +184,7 @@
             </div>
           </li>
 
-          <li class="product-card" data-category="silk" data-reveal data-reveal-group="shop-2">
+          <li class="product-card" data-category="silk">
             <div class="product-card__media">
               <a href="product.html" aria-label="View Mor"><img class="product-card__image" src="assets/img/saree-8.svg" alt="Mor — teal silk saree with gold zari" loading="lazy" /></a>
               <div class="product-card__actions"><button class="btn btn--primary btn--block" data-add-to-cart data-product-name="Mor">Add to bag</button></div>
@@ -196,7 +196,7 @@
             </div>
           </li>
 
-          <li class="product-card" data-category="silk bridal" data-reveal data-reveal-group="shop-2">
+          <li class="product-card" data-category="silk bridal">
             <div class="product-card__media">
               <span class="product-card__badge">Bridal</span>
               <a href="product.html" aria-label="View Rani Legacy"><img class="product-card__image" src="assets/img/saree-1.svg" alt="Rani Legacy — deep maroon bridal Kanjivaram" loading="lazy" /></a>
@@ -209,7 +209,7 @@
             </div>
           </li>
 
-          <li class="product-card" data-category="silk" data-reveal data-reveal-group="shop-2">
+          <li class="product-card" data-category="silk">
             <div class="product-card__media">
               <a href="product.html" aria-label="View Champa Ivory"><img class="product-card__image" src="assets/img/saree-2.svg" alt="Champa Ivory — pale gold Banarasi" loading="lazy" /></a>
               <div class="product-card__actions"><button class="btn btn--primary btn--block" data-add-to-cart data-product-name="Champa Ivory">Add to bag</button></div>
@@ -221,7 +221,7 @@
             </div>
           </li>
 
-          <li class="product-card" data-category="silk" data-reveal data-reveal-group="shop-2">
+          <li class="product-card" data-category="silk">
             <div class="product-card__media">
               <a href="product.html" aria-label="View Vana Emerald"><img class="product-card__image" src="assets/img/saree-4.svg" alt="Vana Emerald — deep green Mysore silk" loading="lazy" /></a>
               <div class="product-card__actions"><button class="btn btn--primary btn--block" data-add-to-cart data-product-name="Vana Emerald">Add to bag</button></div>
@@ -233,7 +233,7 @@
             </div>
           </li>
 
-          <li class="product-card" data-category="cotton" data-reveal data-reveal-group="shop-2">
+          <li class="product-card" data-category="cotton">
             <div class="product-card__media">
               <a href="product.html" aria-label="View Neel Deep"><img class="product-card__image" src="assets/img/saree-5.svg" alt="Neel Deep — dark indigo Chanderi" loading="lazy" /></a>
               <div class="product-card__actions"><button class="btn btn--primary btn--block" data-add-to-cart data-product-name="Neel Deep">Add to bag</button></div>
@@ -298,8 +298,6 @@
   </div>
 
   <!-- SCRIPTS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/shop.js"></script>
 </body>

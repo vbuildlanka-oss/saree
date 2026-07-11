@@ -190,20 +190,26 @@
 .product-card__price ins { text-decoration: none; }
 
 /* --------------------------------------------------------------------------
-   Reveal animation base state (GSAP toggles the visible state via ScrollTrigger)
-   These are applied as inline starting styles so there is no FOUC before JS.
+   Product-card entrance — a single, gentle load-in (NOT scroll-triggered).
+   Cards ease up softly the first time the page renders; below-the-fold cards
+   are simply already in place by the time you scroll to them. This keeps the
+   experience calm and never hijacks the scroll.
    -------------------------------------------------------------------------- */
-[data-reveal] {
+.products-grid .product-card {
   opacity: 0;
-  transform: translateY(40px);
-  will-change: transform, opacity;
+  animation: card-rise 0.9s var(--ease-luxe) forwards;
 }
+/* A short, tasteful stagger across the row. */
+.products-grid .product-card:nth-child(1) { animation-delay: 0.05s; }
+.products-grid .product-card:nth-child(2) { animation-delay: 0.12s; }
+.products-grid .product-card:nth-child(3) { animation-delay: 0.19s; }
+.products-grid .product-card:nth-child(4) { animation-delay: 0.26s; }
+.products-grid .product-card:nth-child(5) { animation-delay: 0.33s; }
+.products-grid .product-card:nth-child(6) { animation-delay: 0.40s; }
 
-/* Fallback: if JS/GSAP fails to load, reveal everything after load. */
-.no-js [data-reveal],
-.reveal-ready [data-reveal] {
-  opacity: 1;
-  transform: none;
+@keyframes card-rise {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: none; }
 }
 
 /* --------------------------------------------------------------------------
