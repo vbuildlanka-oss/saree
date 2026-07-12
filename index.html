@@ -27,6 +27,10 @@
   <link rel="stylesheet" href="assets/css/layout.css" />
   <link rel="stylesheet" href="assets/css/components.css" />
   <link rel="stylesheet" href="assets/css/pages.css" />
+
+  <!-- Favicon / touch icon (brand monogram) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/img/favicon-180.png" />
 </head>
 
 <body>
@@ -50,10 +54,10 @@
         </ul>
       </nav>
 
-      <!-- Brand wordmark → the_custom_logo() -->
-      <a class="site-brand" href="index.html">
-        Aranya
-        <span>Handwoven Heirlooms</span>
+      <!-- Brand logo → the_custom_logo() -->
+      <a class="site-brand" href="index.html" aria-label="Aranya — Handwoven Heirlooms, home">
+        <img class="site-brand__mark" src="assets/img/logo-mark.png" alt="" width="44" height="44" aria-hidden="true" />
+        <span class="site-brand__text">Aranya<span class="site-brand__sub">Handwoven Heirlooms</span></span>
       </a>
 
       <!-- Utility actions → account + mini-cart fragment -->
@@ -303,6 +307,7 @@
     <div class="container">
       <div class="site-footer__top">
         <div class="site-footer__brand-col">
+          <img class="site-footer__mark" src="assets/img/logo-mark.png" alt="Aranya" width="56" height="56" />
           <p class="site-footer__brand">Aranya</p>
           <p class="site-footer__tagline">
             Handwoven luxury sarees. Made slowly, meant to be kept.

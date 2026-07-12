@@ -24,6 +24,10 @@
   <link rel="stylesheet" href="assets/css/layout.css" />
   <link rel="stylesheet" href="assets/css/components.css" />
   <link rel="stylesheet" href="assets/css/pages.css" />
+
+  <!-- Favicon / touch icon (brand monogram) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/img/favicon-180.png" />
 </head>
 
 <body>
@@ -41,7 +45,10 @@
           <li><a class="site-nav__link" href="index.html#journal">Journal</a></li>
         </ul>
       </nav>
-      <a class="site-brand" href="index.html">Aranya<span>Handwoven Heirlooms</span></a>
+      <a class="site-brand" href="index.html" aria-label="Aranya — Handwoven Heirlooms, home">
+        <img class="site-brand__mark" src="assets/img/logo-mark.png" alt="" width="44" height="44" aria-hidden="true" />
+        <span class="site-brand__text">Aranya<span class="site-brand__sub">Handwoven Heirlooms</span></span>
+      </a>
       <div class="site-header__actions">
         <a class="site-header__action site-header__action--account" href="#">Account</a>
         <a class="site-header__action" href="#">Bag&nbsp;(<span class="cart-count">0</span>)</a>
@@ -254,6 +261,7 @@
     <div class="container">
       <div class="site-footer__top">
         <div class="site-footer__brand-col">
+          <img class="site-footer__mark" src="assets/img/logo-mark.png" alt="Aranya" width="56" height="56" />
           <p class="site-footer__brand">Aranya</p>
           <p class="site-footer__tagline">Handwoven luxury sarees. Made slowly, meant to be kept.</p>
         </div>

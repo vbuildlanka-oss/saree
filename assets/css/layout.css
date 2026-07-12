@@ -42,24 +42,41 @@
 
 /* Brand wordmark — logo would be a WooCommerce/WordPress custom-logo output. */
 .site-brand {
+  grid-column: 2;
+  justify-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--color-charcoal);
+  white-space: nowrap;
+}
+
+/* Gold monogram emblem (transparent PNG — works on ivory, hero, and dark). */
+.site-brand__mark {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  display: block;
+}
+
+.site-brand__text {
+  display: flex;
+  flex-direction: column;
   font-family: var(--font-serif);
   font-size: 1.6rem;
   font-weight: 500;
   letter-spacing: var(--ls-wide);
-  color: var(--color-charcoal);
-  grid-column: 2;
-  text-align: center;
-  white-space: nowrap;
+  line-height: 1;
 }
 
-.site-brand span {
-  display: block;
+.site-brand__sub {
   font-family: var(--font-sans);
   font-size: 0.6rem;
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
   color: var(--color-gold);
-  margin-top: 2px;
+  margin-top: 3px;
 }
 
 /* Header colour treatment while over the dark hero. */
@@ -207,6 +224,14 @@ body.nav-open .nav-toggle span:nth-child(3) { bottom: 50%; transform: translateY
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.site-footer__mark {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
 .site-footer__brand {
   font-family: var(--font-serif);
   font-size: 1.75rem;
@@ -287,4 +312,9 @@ body.nav-open .nav-toggle span:nth-child(3) { bottom: 50%; transform: translateY
 @media (max-width: 560px) {
   .site-footer__top { grid-template-columns: 1fr; }
   .site-footer__bottom { flex-direction: column; align-items: flex-start; gap: var(--space-sm); }
+  /* Tighten the brand lockup on small screens. */
+  .site-brand { gap: 0.5rem; }
+  .site-brand__mark { width: 36px; height: 36px; }
+  .site-brand__text { font-size: 1.3rem; }
+  .site-brand__sub { font-size: 0.55rem; }
 }
