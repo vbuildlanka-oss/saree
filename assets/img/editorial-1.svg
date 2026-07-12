@@ -13,5 +13,4 @@
     <circle cx="800" cy="600" r="240" stroke-width="1"/>
     <circle cx="800" cy="600" r="330" stroke-width="0.6" stroke-opacity="0.25"/>
   </g>
-  <path d="M800 470 l16 46 48 4 -37 32 12 48 -39 -27 -39 27 12 -48 -37 -32 48 -4z" fill="#c8ab7d" fill-opacity="0.55"/>
 </svg>
