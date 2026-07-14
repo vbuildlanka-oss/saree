@@ -1,0 +1,233 @@
+/* ==========================================================================
+   components.css
+   Reusable UI components: buttons, product cards, product grid, badges.
+   --------------------------------------------------------------------------
+   Product-card markup deliberately mirrors WooCommerce's loop structure so it
+   can be dropped into content-product.php later. WooCommerce-equivalent class
+   names are noted in comments beside each element.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  font-weight: 400;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  padding: 1rem 2.25rem;
+  border: 1px solid transparent;
+  transition: background-color var(--dur-fast) var(--ease-luxe),
+              color var(--dur-fast) var(--ease-luxe),
+              border-color var(--dur-fast) var(--ease-luxe);
+  cursor: pointer;
+}
+
+/* Solid maroon — primary action. */
+.btn--primary {
+  background-color: var(--color-maroon);
+  color: var(--color-ivory);
+}
+.btn--primary:hover { background-color: var(--color-maroon-dark); }
+
+/* Outline — secondary action. */
+.btn--outline {
+  background-color: transparent;
+  border-color: var(--color-charcoal);
+  color: var(--color-charcoal);
+}
+.btn--outline:hover {
+  background-color: var(--color-charcoal);
+  color: var(--color-ivory);
+}
+
+/* Ghost outline for use on dark backgrounds. */
+.btn--ghost {
+  background-color: transparent;
+  border-color: rgba(247, 243, 236, 0.5);
+  color: var(--color-ivory);
+}
+.btn--ghost:hover {
+  background-color: var(--color-ivory);
+  color: var(--color-charcoal);
+  border-color: var(--color-ivory);
+}
+
+.btn--block { width: 100%; }
+
+/* Minimal text link with animated gold underline. */
+.link-underline {
+  display: inline-block;
+  font-size: var(--fs-small);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--color-charcoal);
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--color-gold);
+  transition: color var(--dur-fast) var(--ease-luxe);
+}
+.link-underline:hover { color: var(--color-maroon); }
+
+/* --------------------------------------------------------------------------
+   Product grid  →  ul.products (WooCommerce)
+   -------------------------------------------------------------------------- */
+.products-grid {
+  display: grid;
+  gap: var(--space-md) var(--space-md);
+}
+
+/* Featured collection on the homepage — a lighter 4-up layout. */
+.products-grid--featured {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Shop archive — 6 columns × 2 rows on desktop (per spec). */
+.products-grid--shop {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+/* --------------------------------------------------------------------------
+   Product card  →  li.product (WooCommerce loop item)
+   -------------------------------------------------------------------------- */
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Image frame — clips the hover zoom. */
+.product-card__media {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-ivory-deep);
+  aspect-ratio: 3 / 4;
+}
+
+/*
+  WOOCOMMERCE INJECTION POINT — product thumbnail
+  Replace the <img> with: <?php echo woocommerce_get_product_thumbnail(); ?>
+  or the_post_thumbnail( 'woocommerce_thumbnail' ).
+*/
+.product-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-luxe);
+}
+.product-card:hover .product-card__image { transform: scale(1.06); }
+
+/* Optional status badge — maps to WooCommerce's .onsale / stock flags. */
+.product-card__badge {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  z-index: 2;
+  background-color: var(--color-ivory);
+  color: var(--color-maroon);
+  font-size: 0.6875rem;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+}
+
+/*
+  Add-to-cart overlay — slides up over the image on hover (desktop).
+  WOOCOMMERCE INJECTION POINT — replace the button below with
+  woocommerce_template_loop_add_to_cart() which outputs a.add_to_cart_button.
+*/
+.product-card__actions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: var(--space-sm);
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform var(--dur-med) var(--ease-luxe),
+              opacity var(--dur-med) var(--ease-luxe);
+}
+.product-card:hover .product-card__actions,
+.product-card:focus-within .product-card__actions {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.product-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-top: var(--space-sm);
+  text-align: center;
+}
+
+/* WOOCOMMERCE INJECTION POINT — product title (woocommerce_loop_product_title). */
+.product-card__title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-charcoal);
+}
+
+.product-card__meta {
+  font-size: var(--fs-small);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* WOOCOMMERCE INJECTION POINT — price (woocommerce_template_loop_price → span.price). */
+.product-card__price {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  color: var(--color-maroon);
+}
+.product-card__price del { color: var(--color-muted); margin-right: 0.5rem; }
+.product-card__price ins { text-decoration: none; }
+
+/* --------------------------------------------------------------------------
+   Product-card entrance — a single, gentle load-in (NOT scroll-triggered).
+   Cards ease up softly the first time the page renders; below-the-fold cards
+   are simply already in place by the time you scroll to them. This keeps the
+   experience calm and never hijacks the scroll.
+   -------------------------------------------------------------------------- */
+.products-grid .product-card {
+  opacity: 0;
+  animation: card-rise 0.9s var(--ease-luxe) forwards;
+}
+/* A short, tasteful stagger across the row. */
+.products-grid .product-card:nth-child(1) { animation-delay: 0.05s; }
+.products-grid .product-card:nth-child(2) { animation-delay: 0.12s; }
+.products-grid .product-card:nth-child(3) { animation-delay: 0.19s; }
+.products-grid .product-card:nth-child(4) { animation-delay: 0.26s; }
+.products-grid .product-card:nth-child(5) { animation-delay: 0.33s; }
+.products-grid .product-card:nth-child(6) { animation-delay: 0.40s; }
+
+@keyframes card-rise {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive product grids — mobile-first collapse
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .products-grid--shop { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .products-grid--featured { grid-template-columns: repeat(2, 1fr); }
+  .products-grid--shop { grid-template-columns: repeat(3, 1fr); }
+  /* Actions always visible on touch devices (no hover). */
+  .product-card__actions { position: static; transform: none; opacity: 1; padding: var(--space-sm) 0 0; }
+}
+
+@media (max-width: 560px) {
+  .products-grid--shop,
+  .products-grid--featured { grid-template-columns: repeat(2, 1fr); gap: var(--space-md) var(--space-sm); }
+  .product-card__title { font-size: 1.05rem; }
+}
