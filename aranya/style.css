@@ -1,0 +1,51 @@
+/*
+Theme Name: Aranya
+Theme URI: https://github.com/vbuildlanka-oss/saree
+Author: vbuildlanka
+Author URI: https://github.com/vbuildlanka-oss
+Description: Aranya — a handwoven luxury saree theme. An elegant, editorial WordPress theme converted from the Aranya static design. Works out of the box as a front-end showcase and is WooCommerce-ready for full e-commerce.
+Version: 1.0.0
+Requires at least: 5.9
+Tested up to: 6.5
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: aranya
+Tags: e-commerce, custom-menu, featured-images, translation-ready, full-width-template, custom-logo
+*/
+
+/*
+  ------------------------------------------------------------------------
+  NOTE ON STYLES
+  ------------------------------------------------------------------------
+  This file only carries the theme header (required by WordPress) plus a
+  couple of small helpers. The real design lives in the modular files under
+  /assets/css/ (base, layout, components, pages) which are enqueued in the
+  correct order from functions.php — exactly as the original static site
+  loaded them.
+  ------------------------------------------------------------------------
+*/
+
+/* WordPress core alignment / caption / gallery helpers */
+.alignright { float: right; margin: 0 0 1em 1.5em; }
+.alignleft  { float: left;  margin: 0 1.5em 1em 0; }
+.aligncenter { display: block; margin-left: auto; margin-right: auto; }
+.wp-caption { max-width: 100%; }
+.wp-caption-text { text-align: center; font-size: 0.875rem; }
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+}
+
+/* Admin bar spacing so the fixed header never hides under it */
+body.admin-bar .site-header { top: 32px; }
+@media screen and (max-width: 782px) {
+  body.admin-bar .site-header { top: 46px; }
+}
