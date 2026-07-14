@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200">
+  <defs>
+    <linearGradient id="fgc" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#5a1a24"/><stop offset="1" stop-color="#3c1017"/>
+    </linearGradient>
+    <pattern id="wgc" width="34" height="34" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <path d="M0 17H34M17 0V34" stroke="#d8bd90" stroke-opacity="0.10" stroke-width="1.4"/>
+    </pattern>
+    <pattern id="bgc" width="120" height="150" patternUnits="userSpaceOnUse">
+      <path d="M60 60 q14 -22 0 -38 q-14 16 0 38z" fill="#d8bd90" fill-opacity="0.20"/>
+      <circle cx="60" cy="98" r="4" fill="#d8bd90" fill-opacity="0.18"/>
+    </pattern>
+  </defs>
+  <rect width="900" height="1200" fill="url(#fgc)"/>
+  <rect width="900" height="1200" fill="url(#wgc)"/>
+  <rect width="900" height="1200" fill="url(#bgc)"/>
+  <rect x="0" y="980" width="900" height="220" fill="#d8bd90" fill-opacity="0.10"/>
+  <g stroke="#d8bd90" stroke-opacity="0.55" fill="none">
+    <line x1="0" y1="1000" x2="900" y2="1000" stroke-width="2"/>
+    <line x1="0" y1="1150" x2="900" y2="1150" stroke-width="2"/>
+  </g>
+</svg>
